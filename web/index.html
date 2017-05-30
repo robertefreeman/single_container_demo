@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>Birthday - Countdown</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+      <style>
+      .timer-container {
+  margin-top: 100px;
+}
+
+.counter-title h2 {
+  background: #45DBE3;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px;
+}
+
+.clock-container {
+  background: #fff;
+  border: 1px solid #45DBE3;
+  color: #45DBE3;
+  font-size: 60px;
+  font-weight: 600;
+  padding: 20px;
+  min-height: 130px;
+}
+
+.clock {
+  float: left;
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no" >
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <div class="timer-container text-center">
+        <div class="counter-title">
+          <h2><i class="glyphicon glyphicon-time clock"></i> Birthday Countdown
+              </h2>
+        </div>
+        <div class="clock-container">
+          <span id="timer" class="timer"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+
+
+    <script>
+    window.setInterval(countDown, 1000);
+
+function countDown() {
+  var now = new Date();
+  var future = new Date("06/17/2017 00:00:00");
+  var timeLeft = future - now;
+  var milli = timeLeft;
+
+  var seconds = milli / 1000;
+  var minutes = seconds / 60;
+  var hours = minutes / 60;
+  var days = hours / 24;
+  var spareSeconds = seconds % 60;
+  var spareMinutes = minutes % 60;
+  var spareHours = hours % 24;
+  var spareDays = days % 365;
+
+  minutes = parseInt(minutes);
+  hours = parseInt(hours);
+  days = parseInt(days);
+  spareSeconds = parseInt(spareSeconds);
+  spareMinutes = parseInt(spareMinutes);
+  spareHours = parseInt(spareHours);
+  spareDays = parseInt(spareDays);
+
+  days = padNumber(days);
+  hours = padNumber(hours);
+  minutes = padNumber(minutes);
+  spareSeconds = padNumber(spareSeconds);
+  spareMinutes = padNumber(spareMinutes);
+  spareHours = padNumber(spareHours);
+  spareDays = padNumber(spareDays);
+
+  timeLeft = spareDays + ":" + spareHours + ":" + spareMinutes + ":" + spareSeconds;
+  var mySpan = document.getElementById("timer");
+  mySpan.innerHTML = timeLeft;
+
+  if (milli <= 0) { //Time's run out! If all values go to zero
+    mySpan.innerHTML = "00:00:00";
+  }
+}
+
+function padNumber(number) {
+  if (number < 10) {
+    number = "0" + number;
+  }
+  return number;
+}
+  //# sourceURL=pen.js
+  </script>
+
+
+
+
+</body>
+</html>
