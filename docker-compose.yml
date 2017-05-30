@@ -5,9 +5,9 @@ services:
     image: dtr.robert.dtcntr.net/engineering/countdown-nginx
     deploy:
             labels:
-                com.docker.ucp.mesh.http.8080: "external_route=http://countdown.cluster.robert.dtcntr.net,internal_port=8888"
+                com.docker.ucp.mesh.http.8888: "external_route=http://countdown.cluster.robert.dtcntr.net,internal_port=8888"
     ports:
-      - "8888:80"
+      - "8888"
     networks:
       - ucp-hrm
 
